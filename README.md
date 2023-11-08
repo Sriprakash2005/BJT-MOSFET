@@ -1,1 +1,97 @@
 # BJT-MOSFET
+a=int(input("1.BJT, 2.MOSFET:"))
+if(a==1):
+    b=int(input("1.Fixed-bias, 2.Emitted-bias, 3.Voltage-divider bias, 4.Collector-feedback:"))
+    if(b==1):
+        Vcc=int(input("Enter the value of Vcc:"))
+        Vbe=int(input("Enter the value of Vbe:"))
+        Rb=int(input("Enter the value of Rb:"))
+        Ib=(Vcc-Vbe)/Rb
+        print("The value of Ib:",Ib)
+        Beta=int(input("Enter the value of beta:"))
+        Ic=Beta*Ib
+        print("The value of Ic:",Ic)
+        Ie=(Beta+1)*Ib
+        print("The value of Ie:",Ie)
+        Rc=int(input("Enter the value of Rc:"))
+        print("The value of Vce:",Vcc-(Ic*Rc))
+    elif(b==2):
+        Vcc=int(input("Enter the value of Vcc:"))
+        Vbe=int(input("Enter the value of Vbe:"))
+        Rb=int(input("Enter the value of Rb:"))
+        Beta=int(input("Enter the value of beta:"))
+        Re=int(input("Enter the value of Re:"))
+        Ib=(Vcc-Vbe)/(Rb+(Beta+1)*Re)
+        print("The value of Ib:",Ib)
+        Ic=Beta*Ib
+        print("The value of Ic:",Ic)
+        Ie=(Beta+1)*Ib
+        Ri=(Beta+1)*Re
+        print("The value of Ie and Ri:",Ie,"and",Ri)
+        Rc=int(input("Enter the value of Rc:"))
+        print("The value of Vce:",Vcc-(Ic*(Rc+Re)))
+    elif(b==3):
+        print('for exact')
+        r1=int(input("Enter the value of r1:"))
+        r2=int(input("Enter the value of r2:"))
+        Rth=(r1*r2)/(r1+r2)
+        Vcc=int(input("Enter the value of Vcc:"))
+        Eth=(r2*Vcc)/(r1+r2)
+        print("The value of Rth and Eth:",Rth,"and",Eth)
+        Vbe=int(input("Enter the value of Vbe:"))
+        Beta=int(input("Enter the value of beta:"))
+        Re=int(input("Enter the value of Re:"))
+        Ib=(Eth-Vbe)/(Rth+(Beta+1)*Re)
+        Rc=int(input("Enter the value of Rc:"))
+        Ic=Beta*Ib
+        Ie=(Beta+1)*Ib
+        print("The value of Ic and Ie:",Ic,"and",Ie)
+        print("The value of Vce:",Vcc-(Ic*(Rc+Re)))
+        print('for approxiamate')
+        c=Beta*Re>=10*r2
+        if(c):
+            Vb=(r2*Vcc)/(r1+r2)
+            print("The value of Vb is:",Vb)
+            Ve=Vb-Vbe
+            print("The value of Ve is:",Ve)
+            Ie=Ve/Re
+            print("The value of Ie is:",Ie)
+            Ib=Ie/(Beta+1)
+            print("The value of Ib is:",Ib)
+            print("The value of Vce is:",Vcc-(Ic*(Rc+Re)))
+    elif(b==4):
+        Vcc=int(input("Enter the value of Vcc:"))
+        Vbe=int(input("Enter the value of Vbe:"))
+        Rf=int(input("Enter the value of Rf :"))
+        Beta=int(input("Enter the value of beta:"))
+        Rc=int(input("Enter the value of Rc:"))
+        Re=int(input("Enter the value of Re:"))
+        Ib=Vcc-Vbe/Rf+Beta*(Rc+Re)
+        print("the value of the Ib :",Ib)
+        Ic=Beta*Ib
+        Ie=(Beta+1)*Ib
+        print("The value of Ic and Ie:",Ic,"and",Ie)
+        print("The value of Vce:",Vcc-(Ic*(Rc+Re)))
+    else:
+        print("invalid")
+elif(a==2):
+    c=int(input("1.Fixed-bias, 2.Voltage-divider bias:"))
+    if(c==1):
+        Vgg=int(input("Enter the value of Vgg:"))
+        Vgsq=Vgg
+        print("The value of Vgsq:",Vgsq)
+        Vdd=int(input("Enter the value of Vdd:"))
+        Idrs=int(input("Enter the value of Idrs:"))
+        print("The value of Vds:",Vdd-Idrs)
+    elif(c==2):
+        r1=int(input("Enter the value of r1:"))
+        r2=int(input("Enter the value of r2:"))
+        Vdd=int(input("Enter the value of Vdd:"))
+        Isrs=int(input("Enter the value of Isrs:"))
+        Id=int(input("Enter the value of Id:"))
+        rd=int(input("Enter the value of rd:"))
+        rs=int(input("Enter the value of rs:"))
+        Vg=(r2*Vdd)/(r1+r2)
+        print("The value of Vg:",(r2*Vdd)/(r1+r2))
+        print("The value of Vgs:",(Vg-Isrs))
+        print("The value of Vds:",Vdd-(Id*(rd+rs)))
